@@ -906,6 +906,8 @@ void Lib::password()
 }
 int main()
 {
-
+    Lib obj;
+    obj.get();
+    getch();
     return 0;
 }
