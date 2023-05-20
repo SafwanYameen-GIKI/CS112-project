@@ -70,6 +70,45 @@ void Lib::show(int i)
         cout<<"\n\t\tBook's Quantity : "<<q<<endl;
     }
 }
+  void Lib::booklist(int i)
+  {
+                int b,r=0;
+                system("cls");
+                b=branch(i);
+                system("cls");
+                ifstream intf("Booksdata.txt",ios::binary);
+                if(!intf)
+                    cout<<"\n\t\tFile Not Found.";
+                else
+                {
+                    cout<<"\n\t    ************ Book List ************ \n\n";
+                    intf.read((char*)this,sizeof(*this));
+                while(!intf.eof())
+                {
+                    if(b==B)
+                    {
+                        if(q==0 && i==1)
+                        {
+
+                        }
+                        else
+                            {
+                                r++;
+                                cout<<"\n\t\t********** "<<r<<". ********** \n";
+                                show(i);
+                            }
+                    }
+                    intf.read((char*)this,sizeof(*this));
+                }
+                }
+                cout<<"\n\t\tPress any key to continue.....";
+                getch();
+                system("cls");
+                if(i==1)
+                    student();
+                else
+                    librarian();
+    }
 
 int main()
 {
