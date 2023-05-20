@@ -811,6 +811,99 @@ void Lib::librarian()
             librarian();
         }
 }
+void Lib::password()
+{
+    int i=0,j=0;
+    char ch,st[21],ch1[21]={"pass"};
+    system("cls");
+    cout<<"\n\n\t\tEnter Old Password : ";
+    while(1)
+    {
+    ch=getch();
+    if(ch==13)
+    {
+        st[i]='\0';
+        break;
+    }
+    else if(ch==8&&i>0)
+    {
+        i--;
+        cout<<"\b \b";
+    }
+    else
+    {
+    cout<<"*";
+    st[i]=ch;
+    i++;
+    }
+    }
+    ifstream intf("password.txt");
+    intf>>ch1;
+    intf.close();
+    for(i=0;st[i]==ch1[i]&&st[i]!='\0'&&ch1[i]!='\0';i++);
+    if(st[i]=='\0'&&ch1[i]=='\0')
+    {
+        system("cls");
+        cout<<"\n\t**The Password Should be less than 20 characters & don't use spaces**\n\n";
+        cout<<"\n\t\tEnter New Password : ";
+        fflush(stdin);
+        i=0;
+        while(1)
+        {
+        j++;
+        ch=getch();
+        if(ch==13)
+        {
+            for(i=0;st[i]!=' '&&st[i]!='\0';i++);
+            if(j>20 || st[i]==' ')
+            {
+                cout<<"\n\n\t\tYou did't follow the instruction \n\n\t\tPress any key for try again.....";
+                getch();
+                system("cls");
+                password();
+                librarian();
+            }
+            st[i]='\0';
+            break;
+        }
+        else if(ch==8&&i>0)
+        {
+            i--;
+            cout<<"\b \b";
+        }
+        else
+        {
+        cout<<"*";
+        st[i]=ch;
+        i++;
+        }
+        }
+        ofstream outf("password.txt");
+        outf<<st;
+        outf.close();
+        cout<<"\n\n\t\tYour Password has been changed Successfully.";
+        cout<<"\n\t\tPress any key to continue......";
+        getch();
+        system("cls");
+        librarian();
+    }
+    else
+    {
+        cout<<"\n\n\t\tPassword is incorrect.....\n";
+        cout<<"\n\t\tEnter 1 for retry or 2 for menu";
+        cin>>i;
+        if(i==1)
+        {
+        system("cls");
+        password();
+        }
+        else
+        {
+            system("cls");
+            librarian();
+        }
+    }
+}
 int main()
 {
 
