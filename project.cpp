@@ -333,6 +333,123 @@ void Lib::show(int i)
     librarian();
 
   }
+    int Lib::branch(int x)
+  {
+      int i;
+      cout<<"\n\t\t>>Please Choose one Branch :-\n";
+      cout<<"\n\t\t1.CS\n\n\t\t2.EE\n\n\t\t3.Literature\n\n\t\t4.CIVIL\n\n\t\t5.MECHANICAL\n\n\t\t6.Agriculture\n\n\t\t7.Go to menu\n";
+      cout<<"\n\t\tEnter youur choice : ";
+      cin>>i;
+      switch(i)
+      {
+          case 1: return 1;
+                  break;
+          case 2: return 2;
+                  break;
+          case 3: return 3;
+                  break;
+          case 4: return 4;
+                  break;
+          case 5: return 5;
+                  break;
+          case 6: return 6;
+                  break;
+          case 7: system("cls");
+                  if(x==1)
+                  student();
+                  else
+                    librarian();
+          default : cout<<"\n\t\tPlease enter correct option :(";
+                    getch();
+                    system("cls");
+                    branch(x);
+        }
+  }
+    void Lib::see(int x)
+  {
+      int i,b,cont=0;
+      char ch[100];
+      system("cls");
+      b=branch(x);
+      ifstream intf("Booksdata.txt",ios::binary);
+        if(!intf)
+        {
+            cout<<"\n\t\tFile Not Found.\n";
+            cout<<"\n\t\t->Press any key to continue.....";
+            getch();
+            system("cls");
+            if(x==1)
+            student();
+            else
+            librarian();
+        }
+
+      system("cls");
+      cout<<"\n\t\tPlease Choose one option :-\n";
+      cout<<"\n\t\t1.Search By Name\n\n\t\t2.Search By Book's ID\n";
+      cout<<"\n\t\tEnter Your Choice : ";
+      cin>>i;
+      fflush(stdin);
+      intf.read((char*)this,sizeof(*this));
+      if(i==1)
+      {
+          cout<<"\n\t\tEnter Book's Name : ";
+          cin.getline(ch,100);
+          system("cls");
+          while(!intf.eof())
+          {
+            for(i=0;b==B&&q!=0&&bookname[i]!='\0'&&ch[i]!='\0'&&(ch[i]==bookname[i]||ch[i]==bookname[i]+32);i++);
+            if(bookname[i]=='\0'&&ch[i]=='\0')
+                {
+                        cout<<"\n\t\tBook Found :-\n";
+                        show(x);
+                        cont++;
+                        break;
+                }
+             intf.read((char*)this,sizeof(*this));
+          }
+      }
+          else if(i==2)
+          {
+          cout<<"\n\t\tEnter Book's ID : ";
+          cin.getline(ch,100);
+          system("cls");
+          while(!intf.eof())
+          {
+              for(i=0;b==B&&q!=0&&sc[i]!='\0'&&ch[i]!='\0'&&ch[i]==sc[i];i++);
+              if(sc[i]=='\0'&&ch[i]=='\0')
+                {
+                            cout<<"\n\t\tBook Found :-\n";
+                            show(x);
+                            cont++;
+                            break;
+                }
+               intf.read((char*)this,sizeof(*this));
+          }
+
+          }
+          else
+          {
+             cont++;
+             cout<<"\n\t\tPlease enter correct option :(";
+             getch();
+             system("cls");
+             see(x);
+          }
+          intf.close();
+          if(cont==0)
+              cout<<"\n\t\tThis Book is not available :( \n";
+
+    cout<<"\n\t\tPress any key to continue.....";
+    getch();
+    system("cls");
+    if(x==1)
+    student();
+    else
+    librarian();
+
+
+  }
 int main()
 {
 
