@@ -623,6 +623,68 @@ void Lib::show(int i)
     system("cls");
     librarian();
 }
+void Lib::fine(int d,int m,int y,int dd,int mm,int yy)
+{
+    long int n1,n2;
+    int years,l,i;
+    const int monthDays[12] = {31, 28, 31, 30, 31, 30,31, 31, 30, 31, 30, 31};
+    n1 = y*365 + d;
+    for (i=0; i<m - 1; i++)
+        n1 += monthDays[i]; //fn1353
+    years = y;
+    if (m <= 2)
+    years--;
+    l= years / 4 - years / 100 + years / 400;
+    n1 += l;
+    n2 = yy*365 + dd;
+    for (i=0; i<mm - 1; i++)
+        n2 += monthDays[i];
+    years = yy;
+    if (m <= 2)
+    years--;
+    l= years / 4 - years / 100 + years / 400;
+    n2 += l;
+    n1=n2-n1;
+    n2=n1-15;
+    if(n2>0)
+    cout<<"\n\t\tThe Total Fine is : "<<n2;
+    
+}
+void Lib::der(char st[],int b,int x)
+{
+    int i,cont=0;
+    fstream intf("Booksdata.txt",ios::in|ios::out|ios::ate|ios::binary);
+    intf.seekg(0);
+    intf.read((char*)this,sizeof(*this));
+    while(!intf.eof())
+    {
+        for(i=0;b==B&&sc[i]!='\0'&&st[i]!='\0'&&st[i]==sc[i];i++);
+        if(sc[i]=='\0'&&st[i]=='\0')
+        {
+            cont++;
+            if(x==1)
+            {
+                q--;
+            }
+            else
+            {
+                q++;
+            }
+            intf.seekp(intf.tellp()-sizeof(*this));
+            intf.write((char*)this,sizeof(*this));
+            break;
+        }
+        intf.read((char*)this,sizeof(*this));
+    }
+    if(cont==0)
+    {
+        cout<<"\n\t\tBook not found.\n";
+        cout<<"\n\n\t\tPress any key to continue.....";
+        getch();
+        system("cls");
+        issue();
+    }
+}
 int main()
 {
 
