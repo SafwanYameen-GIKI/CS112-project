@@ -684,6 +684,60 @@ void Lib::der(char st[],int b,int x)
         system("cls");
         issue();
     }
+    intf.close();
+}
+void Lib::get()
+{
+   int i;
+        cout<<"\n\t*********** LIBRARY MANAGEMENT SYSTEM ***********\n"<<"\n\t\t\t    L M S\n";
+        cout<<"\n\t\t>>Please Choose Any Option To login \n";
+        cout<<"\n\t\t1.Student\n\n\t\t2.Librarian\n\n\t\t3.Close Application\n";
+        cout<<"\n\t\tEnter your choice : ";
+        cin>>i;
+        if(i==1)
+        {
+            system("cls");
+            student();
+        }
+        else if(i==2)
+            pass();
+
+        else if(i==3)
+            exit(0);
+        else
+        {
+            cout<<"\n\t\tPlease enter correct option :(";
+            getch();
+            system("CLS");
+           get();
+        }
+}
+void Lib::student()
+{
+    int i;
+        cout<<"\n\t************ WELCOME STUDENT ************\n";
+        cout<<"\n\t\t>>Please Choose One Option:\n";
+        cout<<"\n\t\t1.View BookList\n\n\t\t2.Search for a Book\n\n\t\t3.Go to main menu\n\n\t\t4.Close Application\n";
+        cout<<"\n\t\tEnter your choice : ";
+        cin>>i;
+            if(i==1)
+                booklist(1);
+            else if(i==2)
+                see(1);
+            else if(i==3)
+            {
+                system("cls");
+                get();
+            }
+            else if(i==4)
+                exit(0);
+            else
+            {
+                cout<<"\n\t\tPlease enter correct option :(";
+                getch();
+                system("cls");
+                student();
+            }
 }
 int main()
 {
